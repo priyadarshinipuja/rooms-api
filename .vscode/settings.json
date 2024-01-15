@@ -1,0 +1,46 @@
+{
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "markdown",
+    "md",
+    "mdx",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "stylelint.config": {
+    "at-rule-name-case": "lower",
+    "at-rule-name-space-after": "always-single-line",
+    "at-rule-semicolon-newline-after": "always",
+    "customSyntax": "postcss-scss",
+    "extends": [
+      "stylelint-prettier/recommended"
+    ]
+  },
+  "stylelint.snippet": [
+    "css",
+    "less",
+    "postcss",
+    "scss"
+  ],
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss"
+  ],
+  "stylelint.enable": true,
+  "vs-code-prettier-eslint.prettierLast": true,
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "css.format.enable": false,
+  "scss.format.enable": false,
+  "less.format.enable": false,
+  "stylelint.packageManager": "npm"
+}

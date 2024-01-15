@@ -26,10 +26,6 @@ export class UsersRepository {
     return this.userModel.findOne({ email: email });
   }
 
-  async findAvailableUsers(): Promise<User[]> {
-    return this.userModel.find({ isAvailable: true });
-  }
-
   async updateUser(userId: string, changes: Partial<User>): Promise<User> {
     return this.userModel.findOneAndUpdate({ _id: userId }, changes);
   }

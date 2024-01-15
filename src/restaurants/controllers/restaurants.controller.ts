@@ -4,7 +4,6 @@ import {
   Get,
   Param,
   NotFoundException,
-  BadRequestException,
   Post,
   Put,
   Delete,

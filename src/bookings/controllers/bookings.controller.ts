@@ -46,12 +46,7 @@ export class BookingsController {
     @Param('id') bookingId: string,
     @Body() changes: Booking,
   ): Promise<Booking> {
-    console.log('updating booking');
-
-    if (changes._id) {
-      throw new BadRequestException("Can't update booking id");
-    }
-
+    
     return this.bookingsRepository.updateBooking(bookingId, changes);
   }
 

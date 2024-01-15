@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Room } from '../types/room';
@@ -33,10 +33,27 @@ export class RoomsRepository {
   }
 
   async updateRoom(roomId: string, changes: Partial<Room>): Promise<Room> {
+        const room = await this.findRoomByID(roomId);
+    if(!room){
+        throw new HttpException(
+        `Room with id ${roomId} doesn't exist}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    console.log('updating room',roomId);
+
     return this.roomModel.findOneAndUpdate({ _id: roomId }, changes);
   }
 
-  deleteRoom(roomId: string) {
+ async deleteRoom(roomId: string) {
+       const room = await this.findRoomByID(roomId);
+    if(!room){
+        throw new HttpException(
+        `Room with id ${roomId} doesn't exist}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    console.log('deleting room ' + roomId);
     return this.roomModel.deleteOne({ _id: roomId });
   }
 }

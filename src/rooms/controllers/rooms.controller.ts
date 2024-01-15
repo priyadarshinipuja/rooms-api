@@ -66,11 +66,7 @@ export class RoomController {
     @Param('id') roomId: string,
     @Body() changes: Room,
   ): Promise<Room> {
-    console.log('updating room');
 
-    if (changes._id) {
-      throw new BadRequestException("Can't update room id");
-    }
 
     return this.roomsRespository.updateRoom(roomId, changes);
   }
@@ -78,7 +74,6 @@ export class RoomController {
   @Delete(':id')
   //@UseGuards(AdminGuard)
   async deleteRoom(@Param('id') roomId: string) {
-    console.log('deleting room ' + roomId);
 
     return this.roomsRespository.deleteRoom(roomId);
   }

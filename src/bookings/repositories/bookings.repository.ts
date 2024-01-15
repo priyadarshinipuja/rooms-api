@@ -54,14 +54,30 @@ export class BookingsRepository {
     bookingId: string,
     changes: Partial<Booking>,
   ): Promise<Booking> {
+
+    const booking = await this.findBookingByID(bookingId);
+    if(!booking){
+        throw new HttpException(
+        `Booking with id ${bookingId} doesn't exist}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    console.log('updating booking', bookingId);
+
     return this.bookingModel.findOneAndUpdate({ _id: bookingId }, changes, {
       new: true,
     });
   }
 
   async deleteBooking(bookingId: string) {
-    console.log('deleting room ' + bookingId);
     const booking = await this.findBookingByID(bookingId);
+    if(!booking){
+            throw new HttpException(
+            `Booking with id ${bookingId} doesn't exist}`,
+            HttpStatus.BAD_REQUEST,
+        );
+        }
+    console.log('deleting room ' + bookingId);
 
     if (booking._id && booking.room.roomNo) {
       const room = await this.roomsRespository.findRoomByID(
